@@ -1,7 +1,7 @@
 # Thư viện sử dụng
 import os
 import torch
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect
 from werkzeug.utils import secure_filename
 import cv2
 
