@@ -1,0 +1,40 @@
+body {
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+}
+
+div {
+    font-family: 'Overpass', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+input[type="file"] {
+    font-family: 'Overpass', sans-serif;
+    color:blue;
+    font-size: 15px;
+    min-width: 70px;
+    max-width: 100px;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="file"]::file-selector-button, .myButton {
+    font-family: 'Overpass', sans-serif;
+    padding: 5px 5px;
+    align-items: center;
+    display: inline-block;
+    margin: auto;
+    font-size: 20px;
+    margin-top: 5px;
+    cursor: pointer;
+    background-color: azure;
+}

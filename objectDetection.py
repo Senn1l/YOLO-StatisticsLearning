@@ -41,12 +41,14 @@ def clrFolder(folder_path):
 def resizeImagecv2(image_path, size=(800, 600)):
     # Đọc ảnh từ file
     img = cv2.imread(image_path)
-    
-    # Thay đổi kích thước ảnh
-    resized_img = cv2.resize(img, size, interpolation=cv2.INTER_AREA)
-    
-    # Lưu ảnh đã thay đổi kích thước
-    cv2.imwrite(image_path, resized_img)
+    height, width = img.shape[:2]
+
+    if (height, width) > (800, 600):
+        # Thay đổi kích thước ảnh
+        resized_img = cv2.resize(img, size, interpolation=cv2.INTER_AREA)
+
+        # Lưu ảnh đã thay đổi kích thước
+        cv2.imwrite(image_path, resized_img)
 
 # Định nghĩa route tới index.html
 @app.route('/')
@@ -57,20 +59,17 @@ def index():
 @app.route('/upload', methods=['POST'])
 # Hàm này được gọi khi có yêu cầu POST tới URL '/upload'
 def upload_file():
-    # Kiểm tra có tệp được tải lên không
-    if 'file' not in request.files:
-        return redirect(request.url)
-    # Kiểm tra xem người dùng có tải file hợp lệ không
+    # Kiểm tra file upload là hợp lệ
+    if 'file' not in request.files or request.files['file'].filename == '':
+        print("Invalid input file")
+        return render_template('index.html', error="Please select a file to upload.")
     file = request.files['file']
-    if file.filename == '':
-        return redirect(request.url)
     # Nếu có file ảnh
     if file:
         # Đảm bảo tính an toàn khi thực hiện upload file
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath) # png
-        
         # Xóa tất cả file trong folder result
         clrFolder(app.config['RESULT_FOLDER'])
 
