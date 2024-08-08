@@ -5,8 +5,10 @@ from flask import Flask, request, render_template, redirect
 from werkzeug.utils import secure_filename
 import cv2
 
+# Sử dụng api Flask để khởi tạo web app
 app = Flask(__name__)
 
+# Siêu tham số
 UPLOAD_FOLDER = 'static/uploads/'
 RESULT_FOLDER = 'static/results/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -50,7 +52,7 @@ def resizeImagecv2(image_path):
         # Lưu ảnh đã thay đổi kích thước
         cv2.imwrite(image_path, resized_img)
 
-# Định nghĩa route tới index.html
+# Định nghĩa route tới index.html (mặc định)
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -62,7 +64,7 @@ def upload_file():
     # Kiểm tra file upload là hợp lệ
     if 'file' not in request.files or request.files['file'].filename == '':
         print("Invalid input file")
-        return render_template('index.html', error="Please select a file to upload.")
+        return render_template('index.html', error="Please select a valid file to upload.")
     file = request.files['file']
     # Nếu có file ảnh
     if file:
@@ -85,6 +87,7 @@ def upload_file():
         result_img_path = getFirstImagePath(app.config['RESULT_FOLDER'])
         # Sửa size
         resizeImagecv2(result_img_path, size=(800, 600))
+        
         # Render
         return render_template('index.html', result_img=result_img_path)
 
