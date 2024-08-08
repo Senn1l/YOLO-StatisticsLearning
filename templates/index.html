@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project YOLO - Statistics Learning</title>
+</head>
+<body>
+    <h1>YOLO Object Detection app</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if result_img %}
+    <h2>Detected objects:</h2>
+    <img src="{{ url_for('static', filename='results/' + result_img.split('/')[-1]) }}" alt="Result Image">
+    {% endif %}
+</body>
+</html>
