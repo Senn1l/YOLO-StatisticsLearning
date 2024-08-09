@@ -5,7 +5,7 @@ from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 import cv2
 
-# Sử dụng api Flask để khởi tạo web app
+# Sử dụng thư viện Flask để khởi tạo ứng dụng
 app = Flask(__name__)
 
 # Siêu tham số
