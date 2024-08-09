@@ -1,7 +1,7 @@
 # Thư viện sử dụng
 import os
 import torch
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 import cv2
 
@@ -88,7 +88,7 @@ def upload_file():
         # Sửa size
         resizeImagecv2(result_img_path, size=(800, 600))
         
-        # Render
+        # Render_template
         return render_template('index.html', result_img=result_img_path)
 
 # Main
