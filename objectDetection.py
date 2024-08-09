@@ -86,7 +86,7 @@ def upload_file():
         # Lấy ảnh đầu tiên
         result_img_path = getFirstImagePath(app.config['RESULT_FOLDER'])
         # Sửa size
-        resizeImagecv2(result_img_path, size=(800, 600))
+        resizeImagecv2(result_img_path)
         
         # Render_template
         return render_template('index.html', result_img=result_img_path)
