@@ -47,7 +47,7 @@ def resizeImagecv2(image_path):
 
     if (height, width) > (800, 600):
         # Thay đổi kích thước ảnh
-        resized_img = cv2.resize(img, size=(800, 600), interpolation=cv2.INTER_AREA)
+        resized_img = cv2.resize(img, dsize=(800, 600), interpolation=cv2.INTER_AREA)
 
         # Lưu ảnh đã thay đổi kích thước
         cv2.imwrite(image_path, resized_img)
